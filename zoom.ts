@@ -251,6 +251,24 @@ function zoomImage(source: HTMLImageElement, options: Partial<ZoomOptions> = {} 
 				clicked = !clicked;
 			});
 			// TODO: remove 'click' listener
+		} else if (settings.on === 'toggle-drag') {
+			var dragging = false;
+			$(source).on('click.zoom',
+				function (e) {
+					if (dragging) {
+						dragging = false;
+						$(document).off(mousemove, zoom.move);
+					} else if (clicked) {
+						stop();
+						clicked = false;
+					} else {
+						start(e);
+						dragging = true	
+						clicked = true;
+						$(document).on(mousemove, zoom.move);
+					}
+				}
+			);
 		} else if (settings.on === 'mouseover') {
 			// Preemptively call init because IE7 will fire the mousemove handler before the hover handler.
 			// zoom.init();
