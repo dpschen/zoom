@@ -11,10 +11,22 @@
 		"name": "Jack Moore",
 		"email": "hello@jacklmoore.com"
 	},
-	"main": "zoom-vanilla.js",
+	"type": "module",
+	"main": "zoom.js",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "http://github.com/jackmoore/zoom.git"
+		"url": "http://github.com/dpschen/zoom.git"
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "type-check && build-only",
+		"preview": "vite preview",
+		"build-only": "vite build",
+		"type-check": "vue-tsc --noEmit"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9"
 	}
 }
